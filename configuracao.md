@@ -4,21 +4,17 @@
 
 **Verificar a Versão do .NET SDK Instalada:**
 
-```bash
 dotnet --version
 
 **Listar Todas as Versões do .NET SDK Instaladas:**
 
-```bash
 dotnet --list-sdks
 
 **Remover uma Versão Específica do .NET SDK:**
 
-```bash
 dotnet --uninstall-sdk <version>
 
 **Atualizar para a Última Versão do .NET SDK:**
 
-```bash
 dotnet new --update-apply
 
