@@ -22,14 +22,9 @@ Este repositório (.Net_RenataChaves) contém uma série de atividades para a di
 - **E-mail:** renatachom.ads@gmail.com
 
 ---
+## Problema/Questão
 
-## 1. Configuração do Ambiente:
-
-**Problema:** Como verificar se o .NET SDK está corretamente instalado em seu sistema? Liste os comandos para verificar a(s) versão(ões) do .NET SDK instalada(s), como remover e atualizar.
-
----
-
-## 1. Configuração do Ambiente:
+**1. Configuração do Ambiente:**
 
 **Problema:** Como verificar se o .NET SDK está corretamente instalado em seu sistema? Liste os comandos para verificar a(s) versão(ões) do .NET SDK instalada(s), como remover e atualizar.
 
