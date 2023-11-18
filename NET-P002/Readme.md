@@ -1,3 +1,5 @@
+# MÓDULO .NET - INSTRUÇÃO PRÁTICA - .NET-P001
+
 # Sistema de Gerenciamento de Tarefas
 
 Este é um projeto simples de sistema de gerenciamento de tarefas em .NET.
@@ -13,8 +15,7 @@ Este é um projeto simples de sistema de gerenciamento de tarefas em .NET.
   - [Pesquisa por Palavras-Chave](#6-pesquisa-por-palavras-chave)
   - [Estatísticas Básicas](#7-estatísticas-básicas)
   
-
------
+---
   
 ### Requisitos do Projeto
 
