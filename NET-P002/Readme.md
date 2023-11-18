@@ -13,7 +13,9 @@ Este é um projeto simples de sistema de gerenciamento de tarefas em .NET.
   - [Pesquisa por Palavras-Chave](#6-pesquisa-por-palavras-chave)
   - [Estatísticas Básicas](#7-estatísticas-básicas)
   
- 
+
+-----
+  
 ### Requisitos do Projeto
 
 O sistema possui as seguintes funcionalidades:
