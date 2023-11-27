@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 class Program
 {
-    static List<(int Codigo, string Nome, int Quantidade, decimal Preco)> estoque = new List<(int, string, int, decimal)>();
+    static Estoque estoque = new Estoque();
 
     static void Main()
     {
@@ -63,8 +62,7 @@ class Program
             Console.Write("Preço unitário: ");
             decimal preco = decimal.Parse(Console.ReadLine());
 
-            estoque.Add((codigo, nome, quantidade, preco));
-            Console.WriteLine("Produto cadastrado com sucesso!");
+            estoque.CadastrarProduto(codigo, nome, quantidade, preco);
         }
         catch (FormatException)
         {
@@ -83,7 +81,7 @@ class Program
             Console.Write("Digite o código do produto: ");
             int codigo = int.Parse(Console.ReadLine());
 
-            var produto = estoque.First(p => p.Codigo == codigo);
+            var produto = estoque.ConsultarProdutoPorCodigo(codigo);
             Console.WriteLine($"Nome: {produto.Nome}, Quantidade: {produto.Quantidade}, Preço: {produto.Preco:C}");
         }
         catch (InvalidOperationException)
@@ -107,18 +105,10 @@ class Program
             Console.Write("Digite o código do produto: ");
             int codigo = int.Parse(Console.ReadLine());
 
-            var produto = estoque.First(p => p.Codigo == codigo);
-
             Console.Write("Digite a quantidade a ser adicionada (+) ou removida (-): ");
             int quantidade = int.Parse(Console.ReadLine());
 
-            if (produto.Quantidade + quantidade < 0)
-            {
-                throw new InvalidOperationException("Quantidade insuficiente em estoque para a saída.");
-            }
-
-            produto.Quantidade += quantidade;
-            Console.WriteLine("Estoque atualizado com sucesso!");
+            estoque.AtualizarEstoque(codigo, quantidade);
         }
         catch (InvalidOperationException ex)
         {
@@ -139,7 +129,7 @@ class Program
         Console.Write("Digite o limite de quantidade para o relatório 1: ");
         int limiteQuantidade = int.Parse(Console.ReadLine());
 
-        var relatorio1 = estoque.Where(p => p.Quantidade < limiteQuantidade);
+        var relatorio1 = estoque.GerarRelatorioQuantidade(limiteQuantidade);
         ImprimirRelatorio("Produtos com quantidade em estoque abaixo do limite:", relatorio1);
 
         Console.Write("Digite o valor mínimo para o relatório 2: ");
@@ -148,17 +138,10 @@ class Program
         Console.Write("Digite o valor máximo para o relatório 2: ");
         decimal maximo = decimal.Parse(Console.ReadLine());
 
-        var relatorio2 = estoque.Where(p => p.Preco >= minimo && p.Preco <= maximo);
-        ImprimirRelatorio("Produtos com valor entre o mínimo e o máximo:", relatorio2);
+        var relatorio2 = estoque.GerarRelatorioPreco(minimo, maximo);
+ImprimirRelatorio("Produtos com valor entre o mínimo e o máximo:", relatorio2);
 
-        var relatorio3 = from produto in estoque
-                         let valorTotalProduto = produto.Quantidade * produto.Preco
-                         select new
-                         {
-                             produto.Nome,
-                             produto.Quantidade,
-                             ValorTotalProduto = valorTotalProduto
-                         };
+        var relatorio3 = estoque.GerarRelatorioValorTotal();
 
         Console.WriteLine("Relatório 3: Valor total do estoque e valor total de cada produto");
         foreach (var item in relatorio3)
@@ -167,12 +150,13 @@ class Program
         }
     }
 
-    static void ImprimirRelatorio(string titulo, IEnumerable<(int Codigo, string Nome, int Quantidade, decimal Preco)> relatorio)
+
+static void ImprimirRelatorio(string titulo, IEnumerable<Produto> relatorio)
+{
+    Console.WriteLine(titulo);
+    foreach (var produto in relatorio)
     {
-        Console.WriteLine(titulo);
-        foreach (var produto in relatorio)
-        {
-            Console.WriteLine($"Código: {produto.Codigo}, Nome: {produto.Nome}, Quantidade: {produto.Quantidade}, Preço: {produto.Preco:C}");
-        }
+        Console.WriteLine($"Código: {produto.Codigo}, Nome: {produto.Nome}, Quantidade: {produto.Quantidade}, Preço: {produto.Preco:C}");
     }
+}
 }
