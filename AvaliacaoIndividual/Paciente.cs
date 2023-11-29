@@ -2,25 +2,31 @@ using System;
 
 public class Paciente
 {
-    public string Nome { get; }
-    public DateTime DataNascimento { get; }
-    public string CPF { get; }
-    public Sexo Sexo { get; }
-    public string Sintomas { get; }
+    public string Nome { get; set; }
+    public DateTime DataNascimento { get; set; }
+    private string _cpf;
+    public string CPF
+    {
+        get => _cpf;
+        set
+        {
+            if (value.Length == 11)
+                _cpf = value;
+            else
+                throw new ArgumentException("CPF deve ter 11 dígitos.");
+        }
+    }
+    public string Sexo { get; set; }
+    public string Sintomas { get; set; }
 
-    public Paciente(string nome, DateTime dataNascimento, string cpf, Sexo sexo, string sintomas)
+    public int Idade => DateTime.Now.Year - DataNascimento.Year;
+
+    public Paciente(string nome, DateTime dataNascimento, string cpf, string sexo, string sintomas)
     {
         Nome = nome;
         DataNascimento = dataNascimento;
-        CPF = ValidarCPF(cpf);
+        CPF = cpf;
         Sexo = sexo;
         Sintomas = sintomas;
-    }
-
-    private string ValidarCPF(string cpf)
-    {
-     
-
-        return cpf;
     }
 }
