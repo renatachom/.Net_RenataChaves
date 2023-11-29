@@ -54,5 +54,5 @@ public class Consultorio
         return pacientes.Where(p => p.Sexo.Equals(sexo, StringComparison.OrdinalIgnoreCase));
     }
 
-    
+    // Outras consultas e relatórios podem ser implementados aqui
 }
